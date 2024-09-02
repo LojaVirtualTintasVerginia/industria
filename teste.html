@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-brown-500 text-white text-center py-4">
+            <h1 class="text-xl font-bold">PAREDES</h1>
+        </div>
+
+        <!-- Brand Selector -->
+        <div class="flex justify-center mt-4">
+            <button id="all-brands" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Todas as Superficies</button>
+            <button id="hydronorth" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Alvenaria</button>
+            <button id="suvinil" class="px-4 py-2 mx-2 bg-purple-700 text-white rounded-lg focus:outline-none focus:bg-purple-800">Madeira e Metal</button>
+        </div>
+
+        <!-- Colors -->
+        <div id="color-container" class="grid grid-cols-3 gap-4 mt-8">
+            <!-- Default Suvinil colors -->
+            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Algodão Egípcio <br>Suvinil</div>
+            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Marfim <br>Suvinil</div>
+            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Amarelo Canário <br>Suvinil</div>
+            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Tangerina <br>Suvinil</div>
+            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Terra Roxa <br>Suvinil</div>
+            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Areia <br>Suvinil</div>
+        </div>
+    </div>
+
+    <script>
+        const suvinilColors = [
+            "Algodão Egípcio",
+            "Marfim",
+            "Amarelo Canário",
+            "Tangerina",
+            "Terra Roxa",
+            "Areia"
+        ];
+
+        const hydronorthColors = [
+            "Cor 1",
+            "Cor 2",
+            "Cor 3"
+        ];
+
+        const colorContainer = document.getElementById("color-container");
+        const suvinilButton = document.getElementById("suvinil");
+        const hydronorthButton = document.getElementById("hydronorth");
+        const allBrandsButton = document.getElementById("all-brands");
+
+        function displayColors(colors, brand) {
+            colorContainer.innerHTML = "";
+            colors.forEach(color => {
+                const colorElement = document.createElement("div");
+                colorElement.className = "p-4 bg-gray-200 text-center rounded-lg shadow";
+                colorElement.innerHTML = `${color} <br>${brand}`;
+                colorContainer.appendChild(colorElement);
+            });
+        }
+
+        suvinilButton.addEventListener("click", () => displayColors(suvinilColors, "Suvinil"));
+        hydronorthButton.addEventListener("click", () => displayColors(hydronorthColors, "Hydronorth"));
+        allBrandsButton.addEventListener("click", () => {
+            displayColors(suvinilColors, "Suvinil");
+            displayColors(hydronorthColors, "Hydronorth");
+        });
+    </script>
+</body>
+</html>
