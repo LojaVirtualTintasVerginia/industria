@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Selector</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .card-color-custom {
+            width: 175px; /* Ajuste a largura do card conforme necessário */
+            height: 80px; /* Ajuste a altura do card conforme necessário */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .text-custom-leque-clara {
+            font-size: 16px;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 p-6">
 
@@ -14,62 +28,119 @@
             <h1 class="text-xl font-bold">PAREDES</h1>
         </div>
 
-        <!-- Brand Selector -->
+        <!-- Application Type Selector -->
         <div class="flex justify-center mt-4">
-            <button id="all-brands" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Todas as Superficies</button>
-            <button id="hydronorth" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Alvenaria</button>
-            <button id="suvinil" class="px-4 py-2 mx-2 bg-purple-700 text-white rounded-lg focus:outline-none focus:bg-purple-800">Madeira e Metal</button>
+            <button id="all-applications" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Todas as Aplicações</button>
+            <button id="alvenaria" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Alvenaria</button>
+            <button id="madeiraMetal" class="px-4 py-2 mx-2 bg-gray-300 text-black rounded-lg focus:outline-none focus:bg-gray-400">Madeira e Metal</button>
         </div>
 
         <!-- Colors -->
-        <div id="color-container" class="grid grid-cols-3 gap-4 mt-8">
-            <!-- Default Suvinil colors -->
-            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Algodão Egípcio <br>Suvinil</div>
-            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Marfim <br>Suvinil</div>
-            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Amarelo Canário <br>Suvinil</div>
-            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Tangerina <br>Suvinil</div>
-            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Terra Roxa <br>Suvinil</div>
-            <div class="p-4 bg-gray-200 text-center rounded-lg shadow">Areia <br>Suvinil</div>
+        <div id="color-container" class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <!-- Default Colors -->
         </div>
     </div>
 
     <script>
-        const suvinilColors = [
-            "Algodão Egípcio",
-            "Marfim",
-            "Amarelo Canário",
-            "Tangerina",
-            "Terra Roxa",
-            "Areia"
+        const madeiraMetal = [
+            { name: "Verde Colonial", hexColor: "#3C5A49" },
+            { name: "Azul França", hexColor: "#236A8D" },
+            { name: "Laranja", hexColor: "#D6623E" },
+            { name: "Camurça", hexColor: "#C5A585", textColor: "text-black" },
+            { name: "Vinho Chassis", hexColor: "#5A3A31" }
         ];
 
-        const hydronorthColors = [
-            "Cor 1",
-            "Cor 2",
-            "Cor 3"
+        const alvenaria = [
+            { name: "Colorado", hexColor: "#8A4A39" },
+            { name: "Alumínio", hexColor: "#D3D8D4", textColor: "text-black" },
+            { name: "Verde", hexColor: "#546F4A" },
+            { name: "Amarelo Demarcação", hexColor: "#F2C44D", textColor: "text-black" },
+            { name: "Azul", hexColor: "#225C7A" },
+            { name: "Algodão-Egípcio",  hexColor:"#Eae3D5", textColor: "text-black" },
+{ name: "Alumínio",  hexColor:"#Cdd3D1" , textColor: "text-black"},
+{ name: "Amarelo-Demarcação",  hexColor:"#F2C25E" },
+{ name: "Amarelo-Ouro",  hexColor:"#F8Aa33" },
+{ name: "Areia",  hexColor:"#D3Bfa9" },
+{ name: "Azul",  hexColor:"#255F82" },
+{ name: "Azul-Del-Rey",  hexColor:"#314A64" },
+{ name: "Azul-Franca",  hexColor:"#1D6391" },
+{ name: "Branco",  hexColor:"#Fdfff8" , textColor: "text-black"},
+{ name: "Camurça",  hexColor:"#C4Ac90" },
+{ name: "Casca-De-Árvore",  hexColor:"#A09389" },
+{ name: "Castor",  hexColor:"#Ba987F" },
+{ name: "Cerâmica",  hexColor:"#955648" },
+{ name: "Chumbo",  hexColor:"#8A9192" },
+{ name: "Chumbo",  hexColor:"#8A9192" },
+{ name: "Cinza",  hexColor:"#948F96" },
+{ name: "Cinza-Escuro",  hexColor:"#606869" },
+{ name: "Cinza-Médio",  hexColor:"#A3B2Ae" },
+{ name: "Colorado",  hexColor:"#7C4A3D" },
+{ name: "Concreto",  hexColor:"#7A7C61" },
+{ name: "Cortiça",  hexColor:"#Cbbca8" },
+{ name: "Crômio",  hexColor:"#D1D0Ca" },
+{ name: "Elefante",  hexColor:"#A2A29D" },
+{ name: "Gelo",  hexColor:"#E0Ddd2" , textColor: "text-black"},
+{ name: "Hematita",  hexColor:"#7C7A74" },
+{ name: "Laranja",  hexColor:"#C75F37" },
+{ name: "Marfim",  hexColor:"#E8D5B1" },
+{ name: "Marrom",  hexColor:"#52443C" },
+{ name: "Marrom-Conhaque",  hexColor:"#966E4F" },
+{ name: "Matte",  hexColor:"#Ad9F7E" },
+{ name: "Nanquim",  hexColor:"#898B88" },
+{ name: "New-Ind",  hexColor:"#353533" },
+{ name: "Ovelha",  hexColor:"#C5Bfb3" },
+{ name: "Palha",  hexColor:"#Dfd4Bc" },
+{ name: "Papel-Picado",  hexColor:"#D8D3Ca" },
+{ name: "Platina",  hexColor:"#Acb7B6" },
+{ name: "Prata",  hexColor:"#C0C0Ba" },
+{ name: "Preto",  hexColor:"#333938" },
+{ name: "Tabaco",  hexColor:"#665141" },
+{ name: "Verde",  hexColor:"#567053" },
+{ name: "Verde-Colonial",  hexColor:"#3A5249" },
+{ name: "Verde-Folha",  hexColor:"#3A6332" },
+{ name: "Vermelho",  hexColor:"#9C3F39" },
+{ name: "Vermelho-Demarcação",  hexColor:"#A43834" },
+{ name: "Vinho-Chassis",  hexColor:"#643F3B" },
+
         ];
 
         const colorContainer = document.getElementById("color-container");
-        const suvinilButton = document.getElementById("suvinil");
-        const hydronorthButton = document.getElementById("hydronorth");
-        const allBrandsButton = document.getElementById("all-brands");
+        const madeiraMetalButton = document.getElementById("madeiraMetal");
+        const alvenariaButton = document.getElementById("alvenaria");
+        const allApplicationsButton = document.getElementById("all-applications");
 
-        function displayColors(colors, brand) {
-            colorContainer.innerHTML = "";
+        function displayColors(colors) {
             colors.forEach(color => {
                 const colorElement = document.createElement("div");
-                colorElement.className = "p-4 bg-gray-200 text-center rounded-lg shadow";
-                colorElement.innerHTML = `${color} <br>${brand}`;
+                const textColorClass = color.textColor ? color.textColor : "text-white";
+                
+                colorElement.className = `card-color-custom  rounded-lg shadow ${textColorClass}`;
+                colorElement.style.backgroundColor = color.hexColor;
+                colorElement.innerHTML = `<span class="text-custom-leque-clara">${color.name}</span>`;
+                
                 colorContainer.appendChild(colorElement);
             });
         }
 
-        suvinilButton.addEventListener("click", () => displayColors(suvinilColors, "Suvinil"));
-        hydronorthButton.addEventListener("click", () => displayColors(hydronorthColors, "Hydronorth"));
-        allBrandsButton.addEventListener("click", () => {
-            displayColors(suvinilColors, "Suvinil");
-            displayColors(hydronorthColors, "Hydronorth");
+        madeiraMetalButton.addEventListener("click", () => {
+            colorContainer.innerHTML = "";
+            displayColors(madeiraMetal);
         });
+
+        alvenariaButton.addEventListener("click", () => {
+            colorContainer.innerHTML = "";
+            displayColors(alvenaria);
+        });
+
+        allApplicationsButton.addEventListener("click", () => {
+            colorContainer.innerHTML = "";
+            displayColors(madeiraMetal);
+            displayColors(alvenaria);
+        });
+
+        // Display all colors by default on page load
+        allApplicationsButton.click();
+
     </script>
 </body>
 </html>
